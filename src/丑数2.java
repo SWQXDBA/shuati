@@ -19,7 +19,7 @@ public class 丑数2 {
                 Long ug = minHeap.poll();//取出一个丑数
                 System.out.println(ug);
                 cnt++;
-                for (int i : nums) {//加入他的2、3、5倍数.
+                for (int i : nums) {//加入他的2、3、5倍数
                     if (set.add(ug * i)) {//避免重复数字
                         minHeap.offer(ug * i);
                     }
