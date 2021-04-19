@@ -1,8 +1,8 @@
-package 每日一题;
-
 import java.util.Scanner;
 
-public class 把字符串转换成整数 {
+public class Main {
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
@@ -17,6 +17,7 @@ public class 把字符串转换成整数 {
                     flag = -1;
                     continue;
                 }
+
                 if (chars[i] < '0' || chars[i] > '9') {
                     num = 0;
                     break;
