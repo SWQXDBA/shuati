@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class 汉诺塔 {
 
-    //n=第n小的盘子
+    //n=第n小的盘子。
     static void hannor(int n, String from, String to, String buffer) {
         if (n == 1) {
             System.out.println(n + "从" + from + "移动到了" + to + "号盘子");
