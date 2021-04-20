@@ -1,8 +1,9 @@
+package 作业;
+
 import java.util.Scanner;
 
-public class Main {
-
-
+public class 末尾0的个数 {
+    //有几个2x5，这个数就有几个0，所以找这个数质数2和5中出现数量较小的次数作为这个数0的个数。
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -35,5 +36,4 @@ public class Main {
         }
         System.out.println(Math.min(two, five));
     }
-
 }
