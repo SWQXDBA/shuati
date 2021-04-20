@@ -1,4 +1,4 @@
-package 作业;
+package 每日一题;
 
 import java.util.Scanner;
 
