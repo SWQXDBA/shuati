@@ -1,8 +1,8 @@
+package 每日一题;
+
 import java.util.Scanner;
 
-public class Main {
-
-
+public class 最近公共祖先 {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -17,6 +17,4 @@ public class Main {
         }
         System.out.println(n);
     }
-
 }
-
