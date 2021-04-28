@@ -144,6 +144,7 @@ public class MyLinkedList<T> {
         for (Node<T> x = firstNode; x != null; x = x.next) {
             unLink(x);
         }
+        size = 0;
         return true;
     }
 
@@ -180,6 +181,8 @@ public class MyLinkedList<T> {
 
     @Override
     public String toString() {
+        if (size == 0)
+            return "null";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (Node<T> x = firstNode; x != null; x = x.next) {

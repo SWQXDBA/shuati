@@ -2,19 +2,43 @@ package 作业;
 
 public class 链表 {
     public static void main(String[] args) {
-        MyLinkedList<Integer> list = new MyLinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.addToFirst(66);
+        MyLinkedList<student> list = new MyLinkedList<>();
+        student stu1 = new student("小明", 18);
+        student stu2 = new student("李华", 128);
+        student stu3 = new student("康康", 138);
+        list.add(stu1);
+        list.add(stu2);
+        list.add(stu3);
+        student stu4 = new student("头插", 1);
+        list.addToFirst(stu4);
         System.out.println(list);
         System.out.println("list.getSize():  " + list.getSize());
         System.out.println("list.getFirst():  " + list.getFirst());
         System.out.println("list.getLast():  " + list.getLast());
+        System.out.println("list.indexOf():  " + list.indexOf(stu1));
 
-        System.out.println("list.indexOf(3):  " + list.indexOf(3));
+        list.remove(stu4);
+        System.out.println(list);
+        list.removeAll();
+        System.out.println(list);
+    }
+
+    static class student {
+        String name;
+        int age;
+
+        public student(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "student{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
     }
 
 
