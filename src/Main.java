@@ -1,10 +1,5 @@
-public class Main {
+ interface Main {
 
 
-    public static void main(String[] args) {
-
-
-    }
-
-}
+ }
 
