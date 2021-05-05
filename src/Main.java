@@ -11,7 +11,7 @@ public class Main {
         jFrame.setSize(800, 20);
         jFrame.setTitle("登录");
         jFrame.setLocationRelativeTo(null);
-        JLabel label = new JLabel("账户");
+        JLabel label = new JLabel("账户1");
         label.setFont(new Font("宋体", Font.BOLD, 20));
         jFrame.add(label);
     }
