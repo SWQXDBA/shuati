@@ -1,6 +1,8 @@
 package 每日一题;
 
 public class 手套 {
+    final static int num = 1;
+
     public static void main(String[] args) {
         int[] l = {0, 7, 1, 3};
         int[] r = {1, 5, 0, 6};
