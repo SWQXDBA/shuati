@@ -1,40 +1,19 @@
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
- public static void main(String[] args) {
 
-  ClassLoader ts = Main.class.getClassLoader();
-  System.out.println(ts);
-  ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-  System.out.println(classLoader);
-  
- }
+    public static void main(String[] args) {
+        JFrame jFrame = new JFrame();
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
- static class father {
-  static int num = 1;
-
-  static {
-   num = 20;
-  }
-
-  public int num2 = 2;
- }
-
- static class father2 {
-  static int num = 1;
-
-  static {
-   num = 20;
-  }
-
-  public int num2 = 2;
- }
-
- static class son extends father {
-  static int num = father.num;
-
-  public son(int n) {
-   super();
-   this.num2 = 1;
-
-  }
- }
+        jFrame.setVisible(true);
+        jFrame.setSize(800, 20);
+        jFrame.setTitle("登录");
+        jFrame.setLocationRelativeTo(null);
+        JLabel label = new JLabel("账户");
+        label.setFont(new Font("宋体", Font.BOLD, 20));
+        jFrame.add(label);
+    }
 }
+
