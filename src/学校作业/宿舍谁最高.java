@@ -6,6 +6,7 @@ public class 宿舍谁最高 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int s;//为了提交
         while (scanner.hasNext()) {
             int n = scanner.nextInt();
             Set<Family> families = new HashSet<>();
