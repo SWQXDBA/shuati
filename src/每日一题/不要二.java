@@ -13,6 +13,7 @@ public class 不要二 {
 //                    arr[i][j]=false;
 //            }
 //        }
+
             int n = scanner.nextInt();
             int m = scanner.nextInt();
             int cnt = 0;
