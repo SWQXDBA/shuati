@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Main {
@@ -16,7 +15,6 @@ public class Main {
             }
         });
         MyFunction(Emo::getTime);
-        ArrayList
     }
 
     interface myi {
