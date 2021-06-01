@@ -12,7 +12,7 @@ public class 剑指16 {
             if ((g & 1) == 1) {
                 ret *= x;
             }
-            x *= x;//每次都平方了。
+            x *= x;//每次都平方了
             g = g >> 1;
         }
         return ret;
