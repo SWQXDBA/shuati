@@ -1,4 +1,4 @@
-public class test {
+class test {
     public static void main(String[] args) {
         A<String> a = new A<>("aaa");
         System.out.println(a.get());
