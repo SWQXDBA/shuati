@@ -1,16 +1,16 @@
 import java.util.*;
 
-public class test {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-            char[] chars = input.toCharArray();
-            List<Character> list = new ArrayList<>();
-            for (char c : chars) {
-                if (!list.contains(c)) {
-                    list.add(c);
-                }
+ class test {
+     public static void main(String[] args) {
+         Scanner scanner = new Scanner(System.in);
+         while (scanner.hasNext()) {
+             String input = scanner.nextLine();
+             char[] chars = input.toCharArray();
+             List<Character> list = new ArrayList<>();
+             for (char c : chars) {
+                 if (!list.contains(c)) {
+                     list.add(c);
+                 }
             }
             for (char c : list) {
                 System.out.print(c);
