@@ -37,7 +37,6 @@ public class 剑指12 {
     public static void main(String[] args) {
         char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'E', 'S'}, {'A', 'D', 'E', 'E'}};
         System.out.println(exist(board, "ABCESEEEFS"));
-//                    char[][] board = {{'a','b','c','e'},{'s','f','c','s'},{'a','d','e','e'}};
-//                    System.out.println(exist(board,"abcced"));
+
     }
 }
