@@ -41,6 +41,3 @@ public class 剑指12 {
 //                    System.out.println(exist(board,"abcced"));
     }
 }
-//ABCE
-//SFES
-//ADEE
