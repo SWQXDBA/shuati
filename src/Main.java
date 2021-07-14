@@ -1,58 +1,23 @@
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.*;
 
 class Main {
-    public static void main(String[] args) {
-        Person p = new Person();
-        Class<Person> c = Person.class;
-        try {
-            Method method = c.getDeclaredMethod("setName", String.class);
-            method.setAccessible(true);
-            Method method1 = c.getDeclaredMethod("setAge", int.class);
+    static void printf(String format, Object... args) {
+        PrintStream p = System.out.printf(format, args);
 
-            try {
-                method.invoke(p, "你的名字");
-                method1.setAccessible(false);
-                method1.invoke(p, 15);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        } catch (NoSuchMethodException e) {
+    }
+
+    public static void main(String[] args) {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String input = bufferedReader.readLine();
+            //      System.out.println("您输入了"+input);
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+            bufferedWriter.write("您输入了" + input);
+            bufferedWriter.flush();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-    }
-
-    static class Person {
-        String name;
-        int age;
-
-        public String getName() {
-            return name;
-        }
-
-        private void setName(String name) {
-            System.out.println("name setted");
-            this.name = name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            System.out.println("给了年龄");
-            this.age = age;
-        }
-    }
-
-    class Son extends Person {
-        public Son() {
-            System.out.println();
-
-        }
     }
 
 }

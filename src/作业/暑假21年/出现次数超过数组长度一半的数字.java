@@ -28,5 +28,7 @@ public class 出现次数超过数组长度一半的数字 {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
         System.out.println(fun(arr));
+
+
     }
 }
