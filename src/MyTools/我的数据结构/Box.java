@@ -27,7 +27,7 @@ public class Box<E> implements Iterable<E> {
         values[size++] = val;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")//抑制警告
     public E get(int index) {
         return (E) values[index];
     }
