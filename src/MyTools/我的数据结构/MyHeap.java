@@ -30,7 +30,6 @@ public class MyHeap<E extends Comparable<E>> {
     }
 
     public static void main(String[] args) {
-        Integer[] arr = {9, 5, 2, 7, 3, 6, 8};
         Integer[] arr2 = {9, 5, 2, 7, 3, 6, 8};
         MyHeap<Integer> heap = new MyHeap<>();
         MyHeap<Integer> heap2 = new MyHeap<>(arr2);
