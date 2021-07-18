@@ -44,6 +44,22 @@ public class MySort {
         }
     }
 
+    public static <T> void bubbleSort(T[] array, Comparator<T> c) {
+        boolean flag = true;
+        for (int i = array.length - 1; i >= 0; i--, flag = true) {
+            for (int j = 0; j < i; j++) {
+                if (c.compare(array[j], array[j + 1]) > 0) {
+                    swap(array, j, j + 1);
+                    flag = false;
+                }
+            }
+            //如果这一次遍历都没有出现过交换，则认为已经是有序的了，结束排序
+            if (flag) {
+                return;
+            }
+        }
+    }
+
     //堆排序会把最"小"的元素插入最后的有序部分，所以最终结果和堆的poll顺序相反。大的会先出来
     public static <T> void heapSort(T[] array, Comparator<T> c) {
         createHeap(array, c);
@@ -87,16 +103,79 @@ public class MySort {
         insertSortHelper(array, c, 1);
     }
 
+    public static <T> void quickSort(T[] array, Comparator<T> c) {
+        partition(array, 0, array.length - 1, c);
+    }
+
+    public static <T> void partition(T[] array, int left, int right, Comparator<T> c) {
+        if (left >= right)//终止条件：排序区间为0
+            return;
+        T base = array[left];//选择基准值
+        int i = left, j = right;
+        while (i < j) {
+            //找到一个比基准值小的元素
+            while (i < j && c.compare(array[j], base) >= 0) {
+                j--;
+            }
+            //找到一个比基准值大的元素
+            while (i < j && c.compare(array[i], base) <= 0) {
+                i++;
+            }
+            //互相交换，让小的在前，大的在后面
+            swap(array, i, j);//当结束的时候，由于是右边的指针j先走，因此会停留在一个小于基准值的元素上(最后一步把j移动到i上)，此时i和j重叠，交换自己也没有关系
+        }
+        //然后把这个比基准值小的停留元素和基准值交换，(基准值在left，因此这个停留的值会被交换到最左边，符合小于基准值的要求)
+        swap(array, left, i);
+        partition(array, left, i - 1, c);
+        partition(array, i + 1, right, c);
+
+    }
+
+    static <T> void mergeSort(T[] array, Comparator<T> c) {
+        merge(array, 0, array.length / 2, array.length, c);
+    }
+
+    @SuppressWarnings("unchecked")
+    static <T> void merge(T[] array, int left, int mid, int right, Comparator<T> c) {
+        if (mid - left >= 1) {
+            merge(array, left, (left + mid) / 2, mid, c);
+            merge(array, mid, (right + mid) / 2, right, c);
+        }
+        int length = right - left;
+        Object[] tmp = new Object[length];
+        int i = left, j = mid;
+        int index = 0;
+        while (i < mid && j < right) {
+            if (c.compare(array[j], array[i]) > 0) {
+                tmp[index++] = array[i++];
+            } else {
+                tmp[index++] = array[j++];
+            }
+        }
+        while (i < mid) {
+            tmp[index++] = array[i++];
+        }
+        while (j < right) {
+            tmp[index++] = array[j++];
+        }
+        for (i = left; i < right; i++) {
+            array[i] = (T) tmp[i - left];
+        }
+    }
+
     static <T> boolean test(Sorter sorter) {
-        Long time = System.currentTimeMillis();
-        for (int k = 0; k < 10; k++) {
+        long time = System.currentTimeMillis();
+        for (int k = 0; k < 100; k++) {
             Random random = new Random();
             List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < 30000; i++) {
+            //(1<<13)是并行排序启动的界限
+            for (int i = 0; i < (1 << 13) + 10; i++) {
                 list.add(random.nextInt() % 10000);
             }
             Integer[] arr = list.toArray(new Integer[0]);
             sorter.sort(arr, Integer::compare);
+// 激活这段代码以进行排序算法正确性的验证
+//            就算激活了这段代码 对于排序时间的对比结果没有影响 时间误差也很小
             for (int i = 0; i < arr.length - 1; i++) {
                 if (arr[i + 1] - arr[i] < 0) {
                     System.out.println(arr[i] + "error" + arr[i + 1]);
@@ -104,6 +183,7 @@ public class MySort {
                     return false;
                 }
             }
+            ///////////////////////////////////////////////
         }
         System.out.println("sort over,used " + (System.currentTimeMillis() - time) + "mills");
         return true;
@@ -111,14 +191,33 @@ public class MySort {
     }
 
     public static void main(String[] args) {
-        System.out.println("selectSort::");
-        System.out.println(test(MySort::selectSort));
+//        Integer[]arr = {4,1,2,1,5,4,2,1,3,6,8,22,1,4,4,2,1};
+//        mergeSort(arr,Integer::compare);
+//        System.out.println(Arrays.toString(arr));
+
+        //选择和插入和冒泡在数据量大的时候较慢 测试的时候可以注释掉
+
+//        System.out.println("insertSort::");
+//        System.out.println(test(MySort::insertSort));
+//        System.out.println("selectSort::");
+//        System.out.println(test(MySort::selectSort));
+//        System.out.println("bubbleSort::");
+//        System.out.println(test(MySort::bubbleSort));
+
+
+        //   堆排序和希尔排序在数据量极大的时候较慢 测试的时候可以注释掉
         System.out.println("heapSort::");
         System.out.println(test(MySort::heapSort));
-        System.out.println("insertSort::");
-        System.out.println(test(MySort::insertSort));
         System.out.println("shellSort::");
         System.out.println(test(MySort::shellSort));
+
+
+        System.out.println("mergeSort::");
+        System.out.println(test(MySort::mergeSort));
+
+
+        System.out.println("quickSort::");
+        System.out.println(test(MySort::quickSort));
         System.out.println("ArraysSort::");
         System.out.println(test(Arrays::sort));
         System.out.println("ArraysParallelSort::");
