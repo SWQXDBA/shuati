@@ -68,6 +68,7 @@ public class MyHashMap<K, V> {
 
     @SuppressWarnings({"unchecked"})
     private void resize() {
+        //判断是否需要扩容
         if (size < capacity * DEFAULT_LOAD_FACTOR) {
             return;
         }
@@ -76,6 +77,7 @@ public class MyHashMap<K, V> {
         capacity = capacity * 2;
         size = 0;
         table = (Node<K, V>[]) new Node[capacity];
+        //弄一个新数组 再用put()把元素全部扔进去
         for (Node<K, V> node : old) {
             if (node != null) {
                 for (MyEntry<K, V> entry : node.list) {
