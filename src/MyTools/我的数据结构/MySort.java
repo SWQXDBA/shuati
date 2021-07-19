@@ -25,6 +25,39 @@ public class MySort {
         }
     }
 
+    public static <T> void countingSort(T[] tarray, Comparator<T> c) {
+        if (tarray.length == 0) {
+            return;
+        }
+        if (!(tarray instanceof Integer[])) {
+            System.out.println("计数排序只用于整数");
+            return;
+        }
+        Integer[] array = (Integer[]) tarray;
+        Integer max = array[0];
+        Integer min = array[0];
+        //找出最大和最小的元素 以他们的差值作为数组范围
+        for (Integer i : array) {
+            max = Math.max(max, i);
+            min = Math.min(min, i);
+        }
+        int capacity = max - min + 1;
+        int[] tmp = new int[capacity];
+        //计数
+        for (Integer i : array) {
+            tmp[i - min]++;
+        }
+        int index = 0;
+        for (int i = 0; i < capacity; i++) {
+            if (tmp[i] != 0) {
+                for (int j = 0; j < tmp[i]; j++) {
+                    array[index++] = i;
+                }
+            }
+        }
+
+    }
+
     public static <T> void selectSort(T[] array, Comparator<T> c) {
         for (int i = 0; i < array.length; i++) {//刚开始整个数组都是"未排序的" 所以从i=0开始
             int max = i;
@@ -34,16 +67,9 @@ public class MySort {
                     max = j;
                 }
             }
-            T maxT = array[max];
-            //搬运元素
-            for (int j = max - 1; j >= i; j--) {
-                array[j + 1] = array[j];
-            }
-            //插入元素
-            array[i] = maxT;
+            swap(array, i, max);
         }
     }
-
     public static <T> void bubbleSort(T[] array, Comparator<T> c) {
         boolean flag = true;
         for (int i = array.length - 1; i >= 0; i--, flag = true) {
@@ -163,19 +189,17 @@ public class MySort {
         }
     }
 
-    static <T> boolean test(Sorter sorter) {
-        long time = System.currentTimeMillis();
-        for (int k = 0; k < 100; k++) {
+    static private <T> boolean testSorter(Sorter sorter, int digit, int dataCounts) {
+        for (int k = 0; k < digit; k++) {
             Random random = new Random();
             List<Integer> list = new ArrayList<>();
             //(1<<13)是并行排序启动的界限
-            for (int i = 0; i < (1 << 13) + 10; i++) {
-                list.add(random.nextInt() % 10000);
+            for (int i = 0; i < dataCounts; i++) {
+                list.add(random.nextInt() % 100000);
             }
             Integer[] arr = list.toArray(new Integer[0]);
             sorter.sort(arr, Integer::compare);
-// 激活这段代码以进行排序算法正确性的验证
-//            就算激活了这段代码 对于排序时间的对比结果没有影响 时间误差也很小
+//进行排序算法正确性的验证
             for (int i = 0; i < arr.length - 1; i++) {
                 if (arr[i + 1] - arr[i] < 0) {
                     System.out.println(arr[i] + "error" + arr[i + 1]);
@@ -185,9 +209,122 @@ public class MySort {
             }
             ///////////////////////////////////////////////
         }
-        System.out.println("sort over,used " + (System.currentTimeMillis() - time) + "mills");
         return true;
+    }
 
+    static public <T> void testTime(Sorter sorter, int digit, int dataCounts) {
+        long start = System.currentTimeMillis();
+        for (int k = 0; k < digit; k++) {
+            Random random = new Random();
+            List<Integer> list = new ArrayList<>();
+            //(1<<13)是并行排序启动的界限
+            for (int i = 0; i < dataCounts; i++) {
+                list.add(random.nextInt() % 10000);
+            }
+            Integer[] arr = list.toArray(new Integer[0]);
+            sorter.sort(arr, Integer::compare);
+
+            ///////////////////////////////////////////////
+        }
+        System.out.println((System.currentTimeMillis() - start) + "mills");
+
+
+    }
+
+    //测试排序算法的正确性
+    public static boolean testSort(Sorter sorter) {
+        return testSorter(sorter, 100, 100);
+    }
+
+    private static void compareSorts(int digit, int dataCounts) {
+        //选择和插入和冒泡在数据量大的时候较慢 测试的时候可以注释掉
+        System.out.print("insertSort::");
+        testTime(MySort::insertSort, digit, dataCounts);
+        System.out.print("selectSort::");
+        testTime(MySort::selectSort, digit, dataCounts);
+        System.out.print("bubbleSort::");
+        testTime(MySort::bubbleSort, digit, dataCounts);
+
+        //   堆排序和希尔排序在数据量极大的时候较慢 测试的时候可以注释掉
+        System.out.print("heapSort::");
+        testTime(MySort::heapSort, digit, dataCounts);
+        System.out.print("shellSort::");
+        testTime(MySort::shellSort, digit, dataCounts);
+
+        System.out.print("mergeSort::");
+        testTime(MySort::mergeSort, digit, dataCounts);
+
+        System.out.print("quickSort::");
+        testTime(MySort::quickSort, digit, dataCounts);
+        System.out.print("ArraysSort::");
+        testTime(Arrays::sort, digit, dataCounts);
+        System.out.print("ArraysParallelSort::");
+        testTime(Arrays::parallelSort, digit, dataCounts);
+    }
+
+    private static void unCompareSorts(int digit, int dataCounts) {
+        System.out.print("countingSort::");
+        testTime(MySort::countingSort, digit, dataCounts);
+    }
+
+    private static void largeDataSorts(int digit, int dataCounts) {
+        System.out.print("countingSort::");
+        testTime(MySort::countingSort, digit, dataCounts);
+        //   堆排序和希尔排序在数据量极大的时候较慢 测试的时候可以注释掉
+        System.out.print("heapSort::");
+        testTime(MySort::heapSort, digit, dataCounts);
+        System.out.print("shellSort::");
+        testTime(MySort::shellSort, digit, dataCounts);
+
+
+        System.out.print("mergeSort::");
+        testTime(MySort::mergeSort, digit, dataCounts);
+
+        System.out.print("quickSort::");
+        testTime(MySort::quickSort, digit, dataCounts);
+        System.out.print("ArraysSort::");
+        testTime(Arrays::sort, digit, dataCounts);
+        System.out.print("ArraysParallelSort::");
+        testTime(Arrays::parallelSort, digit, dataCounts);
+    }
+
+    private static void millionsDataSorts(int digit, int dataCounts) {
+        System.out.print("countingSort::");
+        testTime(MySort::countingSort, digit, dataCounts);
+        System.out.print("quickSort::");
+        testTime(MySort::quickSort, digit, dataCounts);
+        System.out.print("ArraysSort::");
+        testTime(Arrays::sort, digit, dataCounts);
+        System.out.print("ArraysParallelSort::");
+        testTime(Arrays::parallelSort, digit, dataCounts);
+    }
+
+    public static void runTest(SortWay way, int digit, int dataCounts) {
+
+        if (way == SortWay.all) {//启用全部排序
+            unCompareSorts(digit, dataCounts);
+            compareSorts(digit, dataCounts);
+        } else if (way == SortWay.compareSorts) {//启用所有比较排序
+            compareSorts(digit, dataCounts);
+        } else if (way == SortWay.unCompareSorts) {//启用所有非比较排序
+            unCompareSorts(digit, dataCounts);
+        } else if (way == SortWay.smallDataSorts) {//启用所有排序
+            unCompareSorts(digit, dataCounts);
+            compareSorts(digit, dataCounts);
+        } else if (way == SortWay.largeDataSorts) {//取消选择和插入和冒泡排序
+            largeDataSorts(digit, dataCounts);
+        } else if (way == SortWay.millionsDataSorts) {//取消选择和插入和冒泡和堆排序和希尔排序
+            millionsDataSorts(digit, dataCounts);
+        }
+    }
+
+    public enum SortWay {
+        all,
+        compareSorts,
+        unCompareSorts,
+        smallDataSorts,
+        largeDataSorts,
+        millionsDataSorts
     }
 
     public static void main(String[] args) {
@@ -195,36 +332,10 @@ public class MySort {
 //        mergeSort(arr,Integer::compare);
 //        System.out.println(Arrays.toString(arr));
 
-        //选择和插入和冒泡在数据量大的时候较慢 测试的时候可以注释掉
 
-//        System.out.println("insertSort::");
-//        System.out.println(test(MySort::insertSort));
-//        System.out.println("selectSort::");
-//        System.out.println(test(MySort::selectSort));
-//        System.out.println("bubbleSort::");
-//        System.out.println(test(MySort::bubbleSort));
-
-
-        //   堆排序和希尔排序在数据量极大的时候较慢 测试的时候可以注释掉
-        System.out.println("heapSort::");
-        System.out.println(test(MySort::heapSort));
-        System.out.println("shellSort::");
-        System.out.println(test(MySort::shellSort));
-
-
-        System.out.println("mergeSort::");
-        System.out.println(test(MySort::mergeSort));
-
-
-        System.out.println("quickSort::");
-        System.out.println(test(MySort::quickSort));
-        System.out.println("ArraysSort::");
-        System.out.println(test(Arrays::sort));
-        System.out.println("ArraysParallelSort::");
-        System.out.println(test(Arrays::parallelSort));
     }
 
-    private interface Sorter {
+    public interface Sorter {
         <T> void sort(T[] arr, Comparator<T> c);
     }
 }
