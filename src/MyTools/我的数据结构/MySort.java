@@ -219,7 +219,7 @@ public class MySort {
             List<Integer> list = new ArrayList<>();
             //(1<<13)是并行排序启动的界限
             for (int i = 0; i < dataCounts; i++) {
-                list.add(random.nextInt() % 10000);
+                list.add(random.nextInt() % 10000000);
             }
             Integer[] arr = list.toArray(new Integer[0]);
             sorter.sort(arr, Integer::compare);
