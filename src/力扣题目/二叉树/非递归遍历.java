@@ -23,7 +23,7 @@ public class 非递归遍历 {
 
     static void zhongxu(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
-
+//思路: 先找到一个未访问过的节点 然后访问它和它的右子树，在出栈的时候 这个节点的左子树必然已经被访问过了(左边的节点会先出栈)
         do {
             //先一路把左边节点入栈
             while (root != null) {
@@ -43,6 +43,10 @@ public class 非递归遍历 {
 
     static void houxu(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
+        //思路 用一个变量记录上一次访问的节点 避免重复访问
+        //从栈中看一个节点 不能立即访问它。只有当它的左右子树都为空或者都访问过 才能访问它自己 并且将自己真正出栈
+        //同理 因为入栈的顺序 所以访问该节点的时候 它的左节点必然已经访问过了 所以其实只需要考虑右节点
+        //因为后序遍历的特点 因此右子树最后一个访问的节点就是右子树根节点本身 所以可以用lastPeek != root.right进行比较
         TreeNode lastPeek = null;
         do {
             //先一路把左边节点入栈
@@ -62,6 +66,7 @@ public class 非递归遍历 {
                 continue;
             }
             //右子树还未访问过，则访问右子树
+            //注意此时右子树不能为空 否则会把本节点置为空节点 从而漏过了本节点
             if (lastPeek != root.right && root.right != null) {
                 root = root.right;
                 continue;
