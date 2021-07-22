@@ -1,4 +1,4 @@
-package 力扣题目.二叉树;
+package 力扣题目.二叉树.普通二叉树;
 
 
 import MyTools.TreeNode;
