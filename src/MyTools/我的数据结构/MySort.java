@@ -70,6 +70,7 @@ public class MySort {
             swap(array, i, max);
         }
     }
+
     public static <T> void bubbleSort(T[] array, Comparator<T> c) {
         boolean flag = true;
         for (int i = array.length - 1; i >= 0; i--, flag = true) {
@@ -318,6 +319,14 @@ public class MySort {
         }
     }
 
+    public static void main(String[] args) {
+//        Integer[]arr = {4,1,2,1,5,4,2,1,3,6,8,22,1,4,4,2,1};
+//        mergeSort(arr,Integer::compare);
+//        System.out.println(Arrays.toString(arr));
+
+
+    }
+
     public enum SortWay {
         all,
         compareSorts,
@@ -325,14 +334,6 @@ public class MySort {
         smallDataSorts,
         largeDataSorts,
         millionsDataSorts
-    }
-
-    public static void main(String[] args) {
-//        Integer[]arr = {4,1,2,1,5,4,2,1,3,6,8,22,1,4,4,2,1};
-//        mergeSort(arr,Integer::compare);
-//        System.out.println(Arrays.toString(arr));
-
-
     }
 
     public interface Sorter {
