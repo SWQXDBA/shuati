@@ -15,7 +15,7 @@ public class 车队 {
             if (cars[i].time > cars[i - 1].time) {//两辆车不能同时抵达 车队+1
                 cnt++;
             } else {
-                cars[i].time = cars[i - 1].time;//让后一部车的抵达时间和前一辆车的抵达时间相同 组成一个车队
+                cars[i].time = cars[i - 1].time;//让后一部车的抵达时间和前一辆车的抵达时间相同 组成一个车队。
             }
         }
         return position.length == 0 ? 0 : cnt;
