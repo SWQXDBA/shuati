@@ -319,13 +319,7 @@ public class MySort {
         }
     }
 
-    public static void main(String[] args) {
-//        Integer[]arr = {4,1,2,1,5,4,2,1,3,6,8,22,1,4,4,2,1};
-//        mergeSort(arr,Integer::compare);
-//        System.out.println(Arrays.toString(arr));
 
-
-    }
 
     public enum SortWay {
         all,
