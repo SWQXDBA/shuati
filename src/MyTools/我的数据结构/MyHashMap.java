@@ -18,33 +18,6 @@ public class MyHashMap<K, V> {
         capacity = DEFAULT_INITIAL_CAPACITY;
     }
 
-    public static void main(String[] args) {
-        MyHashMap<TestObj, Integer> map = new MyHashMap<>();
-        for (int i = 0; i < 3; i++) {
-            map.put(new TestObj("小明" + i, i + 2), i);
-        }
-        for (int i = 0; i < 50; i++) {
-            map.remove(new TestObj("小明" + i, i + 2));
-        }
-        System.out.println(map.resizeTime);
-        System.out.println(map.size);
-        System.out.println(map.capacity);
-
-
-        for (var e : map.entrySet()) {
-            System.out.println(e.getKey() + "::" + e.getValue());
-        }
-
-        MyHashMap<Integer, Integer> map1 = new MyHashMap<>();
-        for (int i = 0; i < 5; i++) {
-            map1.put(i, i);
-        }
-        for (int i = 0; i < 5; i++) {
-            map1.remove(i);
-        }
-        System.out.println(map1.size);
-    }
-
     public Set<MyEntry<K, V>> entrySet() {
         if (entrySet != null) {
             return entrySet;
@@ -191,4 +164,32 @@ public class MyHashMap<K, V> {
             this.value = value;
         }
     }
+
+    public static void main(String[] args) {
+        MyHashMap<TestObj, Integer> map = new MyHashMap<>();
+        for (int i = 0; i < 3; i++) {
+            map.put(new TestObj("小明" + i, i + 2), i);
+        }
+        for (int i = 0; i < 50; i++) {
+            map.remove(new TestObj("小明" + i, i + 2));
+        }
+        System.out.println(map.resizeTime);
+        System.out.println(map.size);
+        System.out.println(map.capacity);
+
+
+        for (var e : map.entrySet()) {
+            System.out.println(e.getKey() + "::" + e.getValue());
+        }
+
+        MyHashMap<Integer, Integer> map1 = new MyHashMap<>();
+        for (int i = 0; i < 5; i++) {
+            map1.put(i, i);
+        }
+        for (int i = 0; i < 5; i++) {
+            map1.remove(i);
+        }
+        System.out.println(map1.size);
+    }
+
 }
