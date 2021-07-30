@@ -64,6 +64,7 @@ public class MyHashMap<K, V> {
     }
 
     private int hash(K key) {
+        //下标范围为(0,capacity - 1)
         return key.hashCode() & (capacity - 1);
     }
 
