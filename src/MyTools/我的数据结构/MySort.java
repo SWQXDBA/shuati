@@ -134,6 +134,10 @@ public class MySort {
         partition(array, 0, array.length - 1, c);
     }
 
+    public static <T> void parallelSort(T[] array, Comparator<T> c) {
+        Arrays.parallelSort(array, c);
+    }
+
     public static <T> void partition(T[] array, int left, int right, Comparator<T> c) {
         if (left >= right)//终止条件：排序区间为0
             return;
