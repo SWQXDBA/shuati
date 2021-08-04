@@ -1,4 +1,4 @@
-package MyTools.多线程;
+package MyTools.多线程.自己的线程池1;
 
 import java.util.concurrent.BlockingDeque;
 
@@ -16,6 +16,11 @@ public class Worker extends Thread {
     @Override
     public void run() {
         while (!toOver) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             isOver = false;
             Mission mission = missions.poll();
             if (mission != null)

@@ -1,5 +1,9 @@
-package MyTools.多线程;
+package MyTools.多线程.自己的线程池1;
 
+import MyTools.我的数据结构.MySort;
+
+import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -15,6 +19,30 @@ public class MyThreadPool {
     public MyThreadPool() {
         //根据可用核心数创建线程
         listSize = Runtime.getRuntime().availableProcessors() + 1;
+    }
+
+    public static void pressTest(int count) {
+        for (int threadCount = 1; threadCount <= Runtime.getRuntime().availableProcessors(); threadCount++) {
+            MyThreadPool pool = new MyThreadPool(threadCount);
+            Random random = new Random();
+            Integer[] base_arr;
+            base_arr = new Integer[5000];
+            for (int j = 0; j < base_arr.length; j++) {
+                base_arr[j] = Math.abs(random.nextInt() % 100);
+            }
+            System.out.println("start");
+            long start = System.currentTimeMillis();
+            for (int i = 0; i < count; i++) {
+                pool.add(new Mission() {
+                    @Override
+                    public void doMission() {
+                        MySort.quickSort(Arrays.copyOf(base_arr, base_arr.length), Integer::compare);
+                        //  System.out.println(Arrays.toString(arr));
+                    }
+                });
+            }
+
+        }
     }
 
     public int getWorkerCount() {
@@ -55,19 +83,33 @@ public class MyThreadPool {
     }
 
     //阻塞并等待执行完所有任务后清空线程池后继续
-    public void clearThreads() {
+    public void join() {
         execute();
-        while (!missions.isEmpty()) {
+        try {
+            while (!missions.isEmpty()) {
+                Thread.sleep(50);
+
+                tryOverWorker();
+                while (!workers.isEmpty()) {
+                    Thread.sleep(50);
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        tryOverWorker();
-        while (!workers.isEmpty()) {
-        }
+
     }
 
     public void clearMissions() {
-        execute();
-        while (!missions.isEmpty()) {
+        try {
+            execute();
+            while (!missions.isEmpty()) {
+                Thread.sleep(50);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
 
     }
 

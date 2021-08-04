@@ -1,4 +1,4 @@
-package MyTools.多线程;
+package MyTools.多线程.自己的线程池1;
 
 import MyTools.我的数据结构.MySort;
 
@@ -28,7 +28,7 @@ public class Test {
             }
 
 
-            pool.clearThreads();
+            pool.join();
             long use = System.currentTimeMillis() - start;
             System.out.println("调用线程数:" + threadCount);
             System.out.println("总运行时间" + use + "mills");
