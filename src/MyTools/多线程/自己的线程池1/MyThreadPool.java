@@ -10,6 +10,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class MyThreadPool {
     volatile BlockingDeque<Mission> missions = new LinkedBlockingDeque<>();
     volatile BlockingDeque<Worker> workers = new LinkedBlockingDeque<>();
+
     int listSize = 6;
 
     public MyThreadPool(int listSize) {
@@ -73,6 +74,7 @@ public class MyThreadPool {
     }
 
     public void execute() {
+
         //尽量给每一个任务分配线程，并且不超过设定的值
         while (workers.size() < listSize && workers.size() < missions.size()) {
             Worker w = new Worker(missions, workers);
@@ -88,12 +90,12 @@ public class MyThreadPool {
         try {
             while (!missions.isEmpty()) {
                 Thread.sleep(50);
-
+            }
                 tryOverWorker();
                 while (!workers.isEmpty()) {
                     Thread.sleep(50);
                 }
-            }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -120,7 +122,7 @@ public class MyThreadPool {
         return true;
     }
 
-    class MissionPollIsNotEmpty extends Exception {
+    static class MissionPollIsNotEmpty extends Throwable {
 
 
         public MissionPollIsNotEmpty() {
