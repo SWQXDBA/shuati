@@ -1,6 +1,6 @@
 package MyTools.多线程.优先级测试;
 
-import MyTools.多线程.自己的线程池1.MyThreadPool;
+import MyTools.多线程.自己的线程池1.普通任务.MyThreadPool;
 
 public class 使用yield {
 

@@ -1,4 +1,4 @@
-package MyTools.多线程.自己的线程池1;
+package MyTools.多线程.自己的线程池1.普通任务;
 
 import MyTools.我的数据结构.MySort;
 
@@ -84,7 +84,7 @@ public class MyThreadPool {
 
     }
 
-    //阻塞并等待执行完所有任务后清空线程池后继续
+    //阻塞并等待执行完所有任务 关闭所有线程
     public void join() {
         execute();
         try {
@@ -115,11 +115,16 @@ public class MyThreadPool {
 
     }
 
-    public boolean closeIgnoreMission() {
+    //所有线程完成当前任务后强制终止
+    public void closeIgnoreMission() {
         tryOverWorker();
         while (!workers.isEmpty()) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        return true;
     }
 
     static class MissionPollIsNotEmpty extends Throwable {

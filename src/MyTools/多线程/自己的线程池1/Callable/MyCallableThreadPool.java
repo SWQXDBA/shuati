@@ -1,4 +1,4 @@
-package MyTools.多线程.自己的线程池1;
+package MyTools.多线程.自己的线程池1.Callable;
 
 import java.util.HashMap;
 import java.util.concurrent.BlockingDeque;
@@ -54,6 +54,7 @@ public class MyCallableThreadPool<T> {
         }
     }
 
+    //关闭所有线程 并且可以返回结果
     public void join() {
         execute();
         try {
