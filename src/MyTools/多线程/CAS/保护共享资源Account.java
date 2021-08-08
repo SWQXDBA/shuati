@@ -2,6 +2,7 @@ package MyTools.多线程.CAS;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 public class 保护共享资源Account {
     public static void main(String[] args) {
         AccountDefault.test();
@@ -37,19 +38,22 @@ public class 保护共享资源Account {
 
         }
 
-        public synchronized void withDraw(int amount) {
-            while (true) {
-                int prev = balance.get();
-                int res = prev - amount;
-                if (balance.compareAndSet(prev, res)) {
-                    break;
-                }
-            }
+        public void withDraw(int amount) {
+//            while (true) {
+//                int prev = balance.get();
+//                int res = prev - amount;
+//                if (balance.compareAndSet(prev, res)) {
+//                    break;
+//                }
+//                System.out.println("比较失败！！！"+prev+"  "+balance.get());
+//            }
+            balance.getAndAdd(-amount);
         }
     }
 
     static class AccountSyn {
         int balance = 0;
+
 
         public AccountSyn(int balance) {
             this.balance = balance;
