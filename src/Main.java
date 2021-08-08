@@ -1,3 +1,5 @@
+
+
 public class Main {
 
     static class HelloA {
@@ -28,6 +30,7 @@ public class Main {
         }
 
         public static void main(String[] args) {
+
             new TestClass();
             new TestClass();
         }
