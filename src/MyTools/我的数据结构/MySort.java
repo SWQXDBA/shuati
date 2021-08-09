@@ -162,7 +162,7 @@ public class MySort {
 
     }
 
-    static <T> void mergeSort(T[] array, Comparator<T> c) {
+    static public <T> void mergeSort(T[] array, Comparator<T> c) {
         merge(array, 0, array.length / 2, array.length, c);
     }
 
@@ -239,6 +239,16 @@ public class MySort {
     //测试排序算法的正确性
     public static boolean testSort(Sorter sorter) {
         return testSorter(sorter, 100, 100);
+    }
+
+    //测试排序算法的正确性
+    public static <T extends Comparable<T>> boolean testSort(T[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i + 1].compareTo(arr[i]) < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void compareSorts(int digit, int dataCounts) {
