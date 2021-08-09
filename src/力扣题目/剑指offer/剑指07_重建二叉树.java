@@ -1,6 +1,6 @@
 package 力扣题目.剑指offer;
 
-import MyTools.TreeNode;
+import MyTools.工具类.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,7 @@
 package MyTools.多线程.线程池的使用;
 
+import MyTools.工具类.Debugger;
+
 import java.util.concurrent.*;
 
 public class demo {
@@ -8,18 +10,20 @@ public class demo {
         pool.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("不带返回值");
+                Debugger.info("不带返回值");
             }
         });
         Future<String> future = pool.submit(new Callable<String>() {
             @Override
             public String call() throws Exception {
+
                 Thread.sleep(3000);
+                Debugger.debug("ok");
                 return "返回值";
             }
         });
         try {
-            System.out.println(future.get());
+            Debugger.info(future.get());
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }

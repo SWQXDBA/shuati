@@ -1,7 +1,7 @@
 package 力扣题目.二叉树.普通二叉树;
 
 
-import MyTools.TreeNode;
+import MyTools.工具类.TreeNode;
 
 public class 重建二叉树中后 {
     //    左子树 根节点  右子树

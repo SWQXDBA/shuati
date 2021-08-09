@@ -1,7 +1,6 @@
-package MyTools;
+package MyTools.工具类;
 
 public class TreeNode {
-
 
     public int val;
     public TreeNode left;

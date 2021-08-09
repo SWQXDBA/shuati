@@ -1,6 +1,6 @@
 package 力扣题目.二叉树.普通二叉树;
 
-import MyTools.TreeNode;
+import MyTools.工具类.TreeNode;
 
 public class 平衡二叉树 {
     static int treeHeight(TreeNode root) {
