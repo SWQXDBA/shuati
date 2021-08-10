@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class 分治计算 {
+public class 分治计算ForkJoin {
     public static void main(String[] args) {
         Integer[] array = RandomArray.generate(i -> Math.abs(i % 10), 10000000, Integer[].class);
         Integer[] array2 = Arrays.copyOf(array, array.length);
@@ -26,8 +26,13 @@ public class 分治计算 {
             long startTime, endTime;
             startTime = System.currentTimeMillis();
             ForkJoinPool pool = new ForkJoinPool(6);
-            //execute不会阻塞等待结果
-            pool.invoke(new Task(array, 0, array.length));
+            Task task = new Task(array, 0, array.length);
+            //execute不会阻塞等待结果 需要手动task.join
+
+//            pool.execute(task);
+            // invoke方法内部调用了 task.join
+//            task.join();
+            pool.invoke(task);
             endTime = System.currentTimeMillis();
             System.out.println("Fork线程池归并排序用了" + (endTime - startTime));
         }
