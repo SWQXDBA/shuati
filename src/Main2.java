@@ -1,10 +1,12 @@
-import java.util.HashMap;
-import java.util.Map;
+import MyTools.工具类.Debugger;
+import MyTools.工具类.UnsafeGetter;
+import sun.misc.Unsafe;
 
 public class Main2 {
 
     public static void main(String[] args) {
-        Map<Integer, Integer> m = new HashMap<>();
-        m.put(null, null);
+        Unsafe unsafe = UnsafeGetter.get();
+        Debugger.debug(unsafe == UnsafeGetter.get());
+
     }
 }

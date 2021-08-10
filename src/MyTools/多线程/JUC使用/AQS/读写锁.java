@@ -34,7 +34,7 @@ public class 读写锁 {
 
         public void read() {
             rl.lock();
-            
+
             Debugger.debug("读操作中");
 
             Sleeper.sleep(1000);
