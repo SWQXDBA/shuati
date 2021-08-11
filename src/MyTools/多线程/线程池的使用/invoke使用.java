@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 
 public class invoke使用 {
     public static void main(String[] args) {
+        //invoke会阻塞并等待所有任务执行完毕
         ExecutorService pool = Executors.newFixedThreadPool(10);
         try {
             List<Future<String>> list = pool.invokeAll(Arrays.asList(() -> {
