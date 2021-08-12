@@ -1,6 +1,6 @@
 package MyTools.多线程.JUC使用.ForkJoin;
 
-import MyTools.工具类.RandomArray;
+import MyTools.工具类.RandomTool;
 import MyTools.工具类.Sleeper;
 import MyTools.我的数据结构.MySort;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.RecursiveAction;
 
 public class 分治计算ForkJoin {
     public static void main(String[] args) {
-        Integer[] array = RandomArray.generate(i -> Math.abs(i % 10), 10000000, Integer[].class);
+        Integer[] array = RandomTool.generateRandomArray(i -> Math.abs(i % 10), 10000000, Integer[].class);
         Integer[] array2 = Arrays.copyOf(array, array.length);
         Integer[] array3 = Arrays.copyOf(array, array.length);
         {

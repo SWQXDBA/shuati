@@ -1,12 +1,17 @@
-import MyTools.工具类.Debugger;
-import MyTools.工具类.UnsafeGetter;
-import sun.misc.Unsafe;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main2 {
 
     public static void main(String[] args) {
-        Unsafe unsafe = UnsafeGetter.get();
-        Debugger.debug(unsafe == UnsafeGetter.get());
+        Map<String, Integer> map = new HashMap<>() {
+            {
+                put("11", 5);
+                put("abc", 6);
+                System.out.println(this.getClass().getSuperclass());
+            }
+        };
+
 
     }
 }
