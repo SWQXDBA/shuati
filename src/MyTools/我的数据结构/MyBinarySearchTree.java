@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class MyBinarySearchTree<T extends Comparable<T>> {
-    private TreeNode root;
+    private TreeNodeBase<T> root;
 
     public static void main(String[] args) {
         MyBinarySearchTree<Integer> tree = new MyBinarySearchTree<>();
@@ -39,11 +39,11 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         tree.showTree("  ");
     }
 
-    public TreeNode search(T key) {
+    public TreeNodeBase<T> search(T key) {
         if (key == null) {
             return null;
         }
-        TreeNode cur = root;
+        TreeNodeBase<T> cur = root;
         while (cur != null) {
             if (key.compareTo(cur.val) > 0) {
                 cur = cur.right;
@@ -56,14 +56,14 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         return null;
     }
 
-    public TreeNode getMin(TreeNode root) {
+    public TreeNodeBase<T> getMin(TreeNodeBase<T> root) {
         while (root != null && root.left != null) {
             root = root.left;
         }
         return root;
     }
 
-    public TreeNode getMax(TreeNode root) {
+    public TreeNodeBase<T> getMax(TreeNodeBase<T> root) {
         while (root != null && root.right != null) {
             root = root.right;
         }
@@ -74,8 +74,8 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         if (key == null) {
             return true;
         }
-        TreeNode cur = root;
-        TreeNode parent = cur;
+        TreeNodeBase<T> cur = root;
+        TreeNodeBase<T> parent = cur;
         while (cur != null) {
             if (key.compareTo(cur.val) > 0) {
                 parent = cur;
@@ -104,7 +104,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
                 return true;
             }
             //left!+null&&right!=null
-            TreeNode rightMin = getMin(cur.right);
+            TreeNodeBase<T> rightMin = getMin(cur.right);
             rightMin.left = cur.left;
             parent.left = cur.right;
         }
@@ -124,7 +124,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
                 return true;
             }
             //left!+null&&right!=null
-            TreeNode rightMin = getMin(cur.right);
+            TreeNodeBase<T> rightMin = getMin(cur.right);
             rightMin.left = cur.left;
             parent.right = cur.right;
         }
@@ -138,12 +138,12 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
             return;
         }
         if (root == null) {
-            root = new TreeNode(key);
+            root = new TreeNodeBase<T>(key);
             return;
         }
 
-        TreeNode cur = root;
-        TreeNode parent = cur;
+        TreeNodeBase<T> cur = root;
+        TreeNodeBase<T> parent = cur;
         while (cur != null) {
             if (key.compareTo(cur.val) > 0) {
                 parent = cur;
@@ -156,9 +156,9 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
             }
         }
         if (key.compareTo(parent.val) > 0) {
-            parent.right = new TreeNode(key);
+            parent.right = new TreeNodeBase<T>(key);
         } else {
-            parent.left = new TreeNode(key);
+            parent.left = new TreeNodeBase<T>(key);
         }
     }
 
@@ -168,7 +168,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         return list;
     }
 
-    private void getListHelper(List<T> list, TreeNode root) {
+    private void getListHelper(List<T> list, TreeNodeBase<T> root) {
         if (root == null)
             return;
         getListHelper(list, root.left);
@@ -182,7 +182,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
             System.out.println("Tree is null.");
             return;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNodeBase<T>> queue = new LinkedList<>();
         queue.offer(root);
         int curLevel = 1;//当前层数
         int deep = deep(root);
@@ -194,7 +194,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
             }
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode cur = queue.poll();
+                TreeNodeBase<T> cur = queue.poll();
                 if (cur == null) {
                     for (int j = 0; j <= length * 2 + 1; j++) {
                         System.out.print(raw);
@@ -222,19 +222,10 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    private int deep(TreeNode root) {
+    private int deep(TreeNodeBase<T> root) {
         return root == null ? 0 : Math.max(deep(root.left), deep(root.right)) + 1;
     }
 
-    class TreeNode {
-        public T val;
-        public TreeNode left;
-        public TreeNode right;
 
-        public TreeNode(T x) {
-            val = x;
-        }
-
-    }
 
 }
