@@ -1,6 +1,8 @@
-package MyTools.我的数据结构;
+package MyTools.我的数据结构.Tree.BinaryTree.BinarySerchTree;
 
-public class TreeNodeBase<T> implements TreeNodeInterface<T> {
+import MyTools.我的数据结构.Tree.BinaryTree.TreeNodeInterface;
+
+public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<T> {
     public T val;
     public TreeNodeBase<T> left;
     public TreeNodeBase<T> right;
@@ -10,8 +12,8 @@ public class TreeNodeBase<T> implements TreeNodeInterface<T> {
     }
 
     @Override
-    public T getVal() {
-        return val;
+    public String getVal() {
+        return val + "";
     }
 
     @Override

@@ -1,12 +1,20 @@
-package MyTools.我的数据结构;
+package MyTools.我的数据结构.Tree.BinaryTree.BinarySerchTree;
+
+import MyTools.我的数据结构.Tree.BinaryTree.BinaryTreeInterface;
+import MyTools.我的数据结构.Tree.BinaryTree.TreePrinter;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
-public class MyBinarySearchTree<T extends Comparable<T>> {
-    private TreeNodeBase<T> root;
+public class MyBinarySearchTree<T extends Comparable<T>> implements BinaryTreeInterface<T> {
+    public TreeNodeBase<T> root;
+
+    public MyBinarySearchTree(TreeNodeBase<T> root) {
+        this.root = root;
+    }
+
+    public MyBinarySearchTree() {
+    }
 
     public static void main(String[] args) {
         MyBinarySearchTree<Integer> tree = new MyBinarySearchTree<>();
@@ -39,7 +47,8 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         tree.showTree("  ");
     }
 
-    public TreeNodeBase<T> search(T key) {
+    @Override
+    public T get(T key) {
         if (key == null) {
             return null;
         }
@@ -50,7 +59,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
             } else if (key.compareTo(cur.val) < 0) {
                 cur = cur.left;
             } else {
-                return cur;
+                return cur.val;
             }
         }
         return null;
@@ -70,6 +79,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         return root;
     }
 
+    @Override
     public boolean remove(T key) {
         if (key == null) {
             return true;
@@ -133,6 +143,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         return false;
     }
 
+    @Override
     public void insert(T key) {
         if (key == null) {
             return;
@@ -177,49 +188,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
     }
 
     public void showTree(String raw) {
-
-        if (root == null) {
-            System.out.println("Tree is null.");
-            return;
-        }
-        Queue<TreeNodeBase<T>> queue = new LinkedList<>();
-        queue.offer(root);
-        int curLevel = 1;//当前层数
-        int deep = deep(root);
-        while (!queue.isEmpty() && curLevel <= deep) {
-            int length = (int) (Math.pow(2, (deep - curLevel)) - 1);
-            //每一层最前面的空格
-            for (int j = 0; j <= length + 1; j++) {
-                System.out.print(raw);
-            }
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNodeBase<T> cur = queue.poll();
-                if (cur == null) {
-                    for (int j = 0; j <= length * 2 + 1; j++) {
-                        System.out.print(raw);
-                    }
-                    queue.offer(null);
-                    queue.offer(null);
-                    continue;
-                }
-                //节点不为null
-                System.out.print(cur.val);
-                int t = raw.length() - (cur.val.toString().length());
-                //补足数据长度和占位符的差值
-                for (int j = 0; j < t; j++) {
-                    System.out.print(raw.charAt(0));
-                }
-                //两个节点之间的占位符
-                for (int j = 0; j <= length * 2; j++) {
-                    System.out.print(raw);
-                }
-                queue.offer(cur.left);
-                queue.offer(cur.right);
-            }
-            System.out.println("\n");
-            curLevel++;
-        }
+        TreePrinter.showTree(raw, root);
     }
 
     private int deep(TreeNodeBase<T> root) {

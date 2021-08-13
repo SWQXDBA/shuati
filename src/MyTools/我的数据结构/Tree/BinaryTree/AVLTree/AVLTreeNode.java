@@ -1,6 +1,6 @@
-package MyTools.我的数据结构.AVLTree;
+package MyTools.我的数据结构.Tree.BinaryTree.AVLTree;
 
-import MyTools.我的数据结构.TreeNodeInterface;
+import MyTools.我的数据结构.Tree.BinaryTree.TreeNodeInterface;
 
 class AVLTreeNode<T extends Comparable<T>> implements TreeNodeInterface<T> {
     public T val;
@@ -14,8 +14,8 @@ class AVLTreeNode<T extends Comparable<T>> implements TreeNodeInterface<T> {
     }
 
     @Override
-    public T getVal() {
-        return val;
+    public String getVal() {
+        return val + " bf" + bf;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package MyTools.我的数据结构;
+package MyTools.我的数据结构.Tree.BinaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,12 +7,12 @@ public class TreePrinter {
 
 
     //获取树的高度
-    private static <T> int deep(TreeNodeInterface<T> root) {
+    private static <T extends Comparable<T>> int deep(TreeNodeInterface<T> root) {
         return root == null ? 0 : Math.max(deep(root.getLeft()), deep(root.getRight())) + 1;
     }
 
     //raw为占位符 同一行不同节点之间以占位符分割 占位符的长度影响节点之间的间距 row.length必须>val.toString.length
-    public static <T> void showTree(String raw, TreeNodeInterface<T> root) {
+    public static <T extends Comparable<T>> void showTree(String raw, TreeNodeInterface<T> root) {
 
         if (root == null) {
             System.out.println("Tree is null.");
@@ -58,7 +58,7 @@ public class TreePrinter {
         }
     }
 
-    public static <T> String asString(String raw, TreeNodeInterface<T> root) {
+    public static <T extends Comparable<T>> String asString(String raw, TreeNodeInterface<T> root) {
         StringBuilder stringBuilder = new StringBuilder();
 
 

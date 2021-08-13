@@ -1,7 +1,7 @@
-package MyTools.我的数据结构;
+package MyTools.我的数据结构.Tree.BinaryTree;
 
 public interface TreeNodeInterface<T extends Comparable<T>> {
-    T getVal();
+    String getVal();
 
     void setVal(T val);
 
