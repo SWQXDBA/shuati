@@ -12,7 +12,7 @@ public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<
     }
 
     @Override
-    public String getVal() {
+    public String getValString() {
         return val + "";
     }
 

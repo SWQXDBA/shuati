@@ -14,8 +14,13 @@ class AVLTreeNode<T extends Comparable<T>> implements TreeNodeInterface<T> {
     }
 
     @Override
-    public String getVal() {
+    public String getValString() {
         return val + " bf" + bf;
+    }
+
+    @Override
+    public T getVal() {
+        return val;
     }
 
     @Override
@@ -42,4 +47,6 @@ class AVLTreeNode<T extends Comparable<T>> implements TreeNodeInterface<T> {
     public void setRight(TreeNodeInterface<T> right) {
         this.right = (AVLTreeNode<T>) right;
     }
+
+
 }

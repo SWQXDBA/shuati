@@ -1,7 +1,9 @@
 package MyTools.我的数据结构.Tree.BinaryTree;
 
 public interface TreeNodeInterface<T extends Comparable<T>> {
-    String getVal();
+    String getValString();
+
+    T getVal();
 
     void setVal(T val);
 
@@ -12,5 +14,7 @@ public interface TreeNodeInterface<T extends Comparable<T>> {
     TreeNodeInterface<T> getRight();
 
     void setRight(TreeNodeInterface<T> right);
+
+
 
 }

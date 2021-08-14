@@ -84,21 +84,7 @@ public class AVLTree<T extends Comparable<T>> implements BinaryTreeInterface<T> 
 
     @Override
     public T get(T key) {
-        if (key == null) {
-            return null;
-        }
-        var cur = root;
-        while (cur != null) {
-            if (key.compareTo(cur.val) > 0) {
-                cur = cur.right;
-            } else if (key.compareTo(cur.val) < 0) {
-                cur = cur.left;
-            } else {
-                return cur.val;
-            }
-        }
-        return null;
-
+        return search(root, key);
     }
 
     @Override

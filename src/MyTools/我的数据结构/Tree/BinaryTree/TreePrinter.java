@@ -40,8 +40,8 @@ public class TreePrinter {
                     continue;
                 }
                 //节点不为null
-                System.out.print(cur.getVal());
-                int t = raw.length() - (cur.getVal().toString().length());
+                System.out.print(cur.getValString());
+                int t = raw.length() - (cur.getValString().toString().length());
                 //补足数据长度和占位符的差值
                 for (int j = 0; j < t; j++) {
                     System.out.print(raw.charAt(0));
@@ -88,8 +88,8 @@ public class TreePrinter {
                     continue;
                 }
                 //节点不为null
-                stringBuilder.append(cur.getVal());
-                int t = raw.length() - (cur.getVal().toString().length());
+                stringBuilder.append(cur.getValString());
+                int t = raw.length() - (cur.getValString().toString().length());
                 //补足数据长度和占位符的差值
                 for (int j = 0; j < t; j++) {
                     stringBuilder.append(raw.charAt(0));
