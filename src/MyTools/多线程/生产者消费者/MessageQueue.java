@@ -57,6 +57,7 @@ public class MessageQueue {
         synchronized (messages) {
             messages.add(message);
             messages.notifyAll();//注意！！要由被锁对象的对象调用
+
         }
 
     }

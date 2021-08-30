@@ -17,6 +17,11 @@ public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<
     }
 
     @Override
+    public T getVal() {
+        return val;
+    }
+
+    @Override
     public void setVal(T val) {
         this.val = val;
     }
