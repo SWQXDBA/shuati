@@ -6,11 +6,6 @@ import java.lang.reflect.Proxy;
 public class demo {
 
     public static void main(String[] args) {
-        new demo().test();
-
-    }
-
-    void test() {
         //接口的实现类
         Animal bird = () -> System.out.println("鸟在吃");
 
@@ -36,7 +31,9 @@ public class demo {
         ProxyBird.eat();
         ProxyBird = (Animal) Proxy.newProxyInstance(demo.class.getClassLoader(), bird.getClass().getInterfaces(), handler2);
         ProxyBird.eat();
+
     }
+
 
     public interface Animal {
         void eat();
