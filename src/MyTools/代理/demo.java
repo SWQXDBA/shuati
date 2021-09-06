@@ -25,10 +25,10 @@ public class demo {
         };
         //生成代理对象
         //(类加载器，接口，处理器)
-        //生成的代理对象拥有这个接口的方法 但是执行这个方法的时候实际上执行处理器的invoke
+
         //因此 通过不同的处理器 可以获得不同的代理对象
         Animal ProxyBird = (Animal) Proxy.newProxyInstance(demo.class.getClassLoader(), bird.getClass().getInterfaces(), handler);
-        ProxyBird.eat();
+        ProxyBird.eat();//生成的代理对象拥有这个接口的方法 但是执行这个方法的时候实际上执行处理器的invoke方法: ProxyBird.eat()相当于handler.invoke()
         ProxyBird = (Animal) Proxy.newProxyInstance(demo.class.getClassLoader(), bird.getClass().getInterfaces(), handler2);
         ProxyBird.eat();
 
