@@ -31,6 +31,8 @@ public class demo {
         ProxyBird.eat();//生成的代理对象拥有这个接口的方法 但是执行这个方法的时候实际上执行处理器的invoke方法: ProxyBird.eat()相当于handler.invoke()
         ProxyBird = (Animal) Proxy.newProxyInstance(demo.class.getClassLoader(), bird.getClass().getInterfaces(), handler2);
         ProxyBird.eat();
+        System.out.println(ProxyBird.getClass());
+        System.out.println(ProxyBird.getClass().getSuperclass().getSuperclass());
 
     }
 
