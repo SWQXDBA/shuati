@@ -7,13 +7,13 @@ import java.util.concurrent.CountDownLatch;
 
 public class demo {
     public static void main(String[] args) {
-        CountDownLatch latch = new CountDownLatch(3);
+        CountDownLatch latch = new CountDownLatch(10);
         for (int i = 0; i < 10; i++) {
             Thread t1 = new Thread(() -> {
                 Sleeper.sleep(1000);
-
-                latch.countDown();
                 Debugger.debug("减少了1");
+                latch.countDown();
+
                 try {
                     latch.await();
                     Debugger.debug("等待完成");
