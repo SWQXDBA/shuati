@@ -1,4 +1,4 @@
-package 作业;
+package MyTools.我的数据结构;
 
 public class MyLinkedList<T> {
     private int size = 0;

@@ -1,5 +1,7 @@
 package 作业;
 
+import MyTools.我的数据结构.MyLinkedList;
+
 public class 链表 {
     public static void main(String[] args) {
         MyLinkedList<student> list = new MyLinkedList<>();
