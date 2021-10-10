@@ -1,8 +1,9 @@
+package MyTools.多线程.A多线程题目;
+
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Main {
-
+public class 循环打印ABC {
     public static void main(String[] args) {
         ReentrantLock lock = new ReentrantLock();
         Semaphore semaphoreA = new Semaphore(1);
