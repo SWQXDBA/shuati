@@ -49,6 +49,7 @@ public class ConnectionPool {
             int size = this.size;
             for (int i = 0; i < size; i++) {
                 if (!state.get(i)) {
+                    //这里尝试获得连接 如果cas成功 说明他获得了连接的所有权
                     if (state.compareAndSet(i, false, true)) {
                         System.out.println("连接成功");
                         return connections[i];
