@@ -6,6 +6,7 @@ import MyTools.工具类.Sleeper;
 import java.util.concurrent.locks.StampedLock;
 
 //StampedLock不支持可重入和条件唤醒
+@SuppressWarnings("ALL")
 public class Demo {
     public static void main(String[] args) {
         Point point = new Point();

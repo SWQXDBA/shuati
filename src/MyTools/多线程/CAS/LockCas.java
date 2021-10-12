@@ -2,6 +2,9 @@ package MyTools.多线程.CAS;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 自旋锁
+ */
 public class LockCas {
     AtomicInteger state = new AtomicInteger(0);
 
