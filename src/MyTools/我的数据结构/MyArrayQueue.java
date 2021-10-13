@@ -9,7 +9,7 @@ public class MyArrayQueue<E> implements Queue<E> {
     int head = 0;//head出来
     int tail = 0;//tail进入
     private Object[] elements = null;
-
+    int tag = 0;//0表示队列空 1表示队列满 学校做题用 只能用Enqueue和Dequeue
     public MyArrayQueue() {
         elements = new Object[5];
     }
@@ -109,6 +109,31 @@ public class MyArrayQueue<E> implements Queue<E> {
             tail = moveNext(tail);
         }
         return true;
+    }
+
+    private boolean enQueue(E e) {
+        if (tag == 1) {
+            return false;
+        }
+        elements[tail] = e;
+        tail = moveNext(tail);
+        if (tail == head) {
+            tag = 1;
+        }
+        return true;
+    }
+
+    private E deQueue() {
+        E ret = (E) elements[tail];
+        if (tail != head) {
+            tail = movePrev(tail);
+        } else if (tag == 0) {
+            return null;
+        }
+        if (tail == head) {
+            tag = 0;
+        }
+        return ret;
     }
 
     public void grow() {
