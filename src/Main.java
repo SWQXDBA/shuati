@@ -1,11 +1,11 @@
 public class Main {
-
-}
-
-interface tt {
-    void main(String[] args);
-
-    private void kk() {
-
+    public Main(int a) {
     }
+
+    public Main() {
+        this(5);
+    }
+
+
 }
+
