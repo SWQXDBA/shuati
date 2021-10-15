@@ -1,25 +1,34 @@
+package 软件与程序设计兴趣小组比赛;
+
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Main2 {
+public class 简单的序列 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
-            long n = scanner.nextLong();
-            long[] numbers = new long[Math.toIntExact(n)];
-            long max = 10000000;
-            boolean[] array = new boolean[Math.toIntExact(max + 1)];//用于欧拉筛 true为非素数
+            int n = scanner.nextInt();
+            int[] numbers = new int[n];
+            int max = 0;
+            for (int i = 0; i < n; i++) {
+                numbers[i] = scanner.nextInt();
+                if (max < numbers[i]) {
+                    max = numbers[i];
+                }
+            }
+
+            boolean[] array = new boolean[max + 1];//用于欧拉筛 true为非素数
             init(array);
 
-            for (long i = 0; i < n; i++) {
-                long number = scanner.nextLong();
-                if (number == 0) {
+
+            for (int num : numbers) {
+                if (num == 0) {
                     System.out.println(1);
                     System.out.println("0 = 0");
                     continue;
                 }
-                Stack<Long> res = new Stack<>();
-                getRes(res, number, array);
+                Stack<Integer> res = new Stack<>();
+                getRes(res, num, array);
                 System.out.println(res.size());
                 while (!res.isEmpty()) {
                     System.out.print(res.pop());
@@ -27,20 +36,19 @@ public class Main2 {
                         System.out.print(" + ");
                     }
                 }
-                System.out.println(" = " + number);
+                System.out.println(" = " + num);
             }
-
         }
     }
 
-    public static void getRes(Stack<Long> res, long num, boolean[] array) {
-        long temp = num;
-        while (temp >= 0 && array[Math.toIntExact(temp)]) {
+    public static void getRes(Stack<Integer> res, int num, boolean[] array) {
+        int temp = num;
+        while (temp >= 0 && array[temp]) {
             temp--;
         }
         //此时temp为最大的素数了
         res.push(temp);
-        long need = num - temp;
+        int need = num - temp;
         if (need == 0) {
             return;
         }
@@ -49,12 +57,12 @@ public class Main2 {
     }
 
     public static void init(boolean[] array) {
-        long start = 2;
+        int start = 2;
         while (start < array.length) {
-            if (!array[Math.toIntExact(start)]) {
-                long t = 2;
+            if (!array[start]) {
+                int t = 2;
                 while (start * t < array.length) {
-                    array[Math.toIntExact(start * t)] = true;
+                    array[start * t] = true;
                     t++;
                 }
             }
