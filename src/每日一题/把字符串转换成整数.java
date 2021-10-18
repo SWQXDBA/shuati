@@ -11,8 +11,9 @@ public class 把字符串转换成整数 {
             long num = 0;
             long flag = 1;
             for (int i = 0; i < chars.length; i++) {
-                if (chars[i] == '+')
+                if (chars[i] == '+') {
                     continue;
+                }
                 if (chars[i] == '-') {
                     flag = -1;
                     continue;
@@ -22,8 +23,9 @@ public class 把字符串转换成整数 {
                     break;
                 }
                 num += chars[i] - '0';
-                if (i != chars.length - 1)
+                if (i != chars.length - 1) {
                     num *= 10;
+                }
             }
             num *= flag;
             System.out.println(num);

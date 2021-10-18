@@ -1,11 +1,10 @@
 public class Main {
-    public Main(int a) {
-    }
 
-    public Main() {
-        this(5);
-    }
+    private static int count = 100;
 
+    public static void main(String[] args) {
+        System.out.println(5.5 % 3);
+    }
 
 }
 
