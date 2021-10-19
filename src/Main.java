@@ -1,10 +1,11 @@
 public class Main {
 
-    private static int count = 100;
+    static void fun() {
+        System.out.println("1");
+    }
 
     public static void main(String[] args) {
-        System.out.println(5.5 % 3);
+        ((Main) null).fun();
     }
 
 }
-
