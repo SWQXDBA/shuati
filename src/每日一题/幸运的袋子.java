@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class 幸运的袋子 {
-  
+
 
     public static void main(String[] args) {
 

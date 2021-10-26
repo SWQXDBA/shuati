@@ -7,7 +7,7 @@ public class 二进制中1的个数 {
             if ((num & 1) == 1) {
                 sum++;
             }
-            num >>= 1;
+            num >>= 1;  //
         }
         return sum;
     }
