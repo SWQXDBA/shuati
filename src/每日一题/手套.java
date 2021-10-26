@@ -15,9 +15,9 @@ public class 手套 {
         int leftMin = Integer.MAX_VALUE, rightMin = Integer.MAX_VALUE;
         int complete = 0; //需要从左右手套中多拿的数量
         for (int i = 0; i < n; i++) {
-            if (left[i] * right[i] == 0)
+            if (left[i] * right[i] == 0) {
                 complete += (left[i] + right[i]);
-            else {
+            } else {
                 leftSum += left[i];
                 rightSum += right[i];
                 leftMin = Math.min(leftMin, left[i]);
