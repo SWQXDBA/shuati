@@ -10,10 +10,11 @@ public class 最近公共祖先 {
         int n = scanner.nextInt();
         int m = scanner.nextInt();
         while (n != m) {
-            if (n > m)
+            if (n > m) {
                 n /= 2;
-            else
+            } else {
                 m /= 2;
+            }
         }
         System.out.println(n);
     }
