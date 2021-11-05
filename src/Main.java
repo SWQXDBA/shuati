@@ -1,12 +1,9 @@
-import MyTools.我的数据结构.MySort;
+
 
 public class Main {
 
 
     public static void main(String[] args) {
-        MySort.runTest(MySort.SortWay.all, 10, 10000);
-
-
     }
 
     public boolean checkWon(int[][] board) {

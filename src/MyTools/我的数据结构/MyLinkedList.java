@@ -1,5 +1,8 @@
 package MyTools.我的数据结构;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class MyLinkedList<T> {
     private int size = 0;
     private Node<T> firstNode;
@@ -15,6 +18,19 @@ public class MyLinkedList<T> {
             oldFirst.prev = newNode;
         }
         size++;
+    }
+
+    public void sort(Comparator<T> comparator) {
+        T[] arr = (T[]) new Object[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = get(i);
+        }
+        Arrays.sort(arr, comparator);
+        removeAll();
+        for (T t : arr) {
+            add(t);
+        }
+
     }
 
     private void LinkToEnd(T item) {
@@ -98,6 +114,27 @@ public class MyLinkedList<T> {
         LinkToEnd(item);
     }
 
+    public boolean insert(T item, int after) {
+        if (after < 0 || after > size) {
+            return false;
+        }
+
+        if (after == size) {
+            LinkToEnd(item);
+            return true;
+        }
+        if (after == 0) {
+            LinkToFirst(item);
+            return true;
+        }
+        Node<T> temp = this.firstNode;
+        for (int i = 0; i <= after; i++) {
+            temp = temp.next;
+        }
+        LinkBefore(item, temp);
+        return true;
+    }
+
     public void addToFirst(T item) {
         LinkToFirst(item);
     }
@@ -138,12 +175,25 @@ public class MyLinkedList<T> {
 
     }
 
+    public boolean remove(int index) {
+        if (index > size || index < 0) {
+            return false;
+        }
+        return remove(get(index));
+
+    }
+
     public boolean removeAll() {
         if (size == 0)
             return false;
-        for (Node<T> x = firstNode; x != null; x = x.next) {
+        Node<T> x = firstNode;
+        while (x != null) {
+            Node<T> next = firstNode.next;
             unLink(x);
+            x = next;
         }
+
+
         size = 0;
         return true;
     }
@@ -168,7 +218,17 @@ public class MyLinkedList<T> {
             }
         }
         return -1;
+    }
 
+    public T get(int index) {
+        if (index > size || index < 0) {
+            return null;
+        }
+        Node<T> temp = this.firstNode;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.value;
     }
 
     public boolean contains(T item) {
@@ -182,7 +242,7 @@ public class MyLinkedList<T> {
     @Override
     public String toString() {
         if (size == 0)
-            return "null";
+            return "[]";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (Node<T> x = firstNode; x != null; x = x.next) {
