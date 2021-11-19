@@ -7,6 +7,15 @@ public class MyHeap<E extends Comparable<E>> {
     int size;
     Comparator<E> comparator;
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            builder.append(elements[i]).append(" ");
+        }
+        return builder.toString();
+    }
+
     public MyHeap(Object[] elements) {
         this();
         this.elements = elements;
@@ -122,6 +131,7 @@ public class MyHeap<E extends Comparable<E>> {
         if (size <= 1) {
             return;
         }
+        //size-1为最后一个元素
         int index = (size - 1 - 1) / 2;
         for (int i = index; i >= 0; i--) {
             shiftDown(i);
