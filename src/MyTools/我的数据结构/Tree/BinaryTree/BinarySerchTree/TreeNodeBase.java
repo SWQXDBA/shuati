@@ -2,7 +2,7 @@ package MyTools.我的数据结构.Tree.BinaryTree.BinarySerchTree;
 
 import MyTools.我的数据结构.Tree.BinaryTree.TreeNodeInterface;
 
-public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<T> {
+public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<T>, Comparable<TreeNodeBase<T>> {
     public T val;
     public TreeNodeBase<T> left;
     public TreeNodeBase<T> right;
@@ -44,5 +44,10 @@ public class TreeNodeBase<T extends Comparable<T>> implements TreeNodeInterface<
     @Override
     public void setRight(TreeNodeInterface<T> right) {
         this.right = (TreeNodeBase<T>) right;
+    }
+
+    @Override
+    public int compareTo(TreeNodeBase<T> o) {
+        return val.compareTo(o.getVal());
     }
 }
