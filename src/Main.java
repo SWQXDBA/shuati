@@ -1,22 +1,17 @@
-import MyTools.我的数据结构.MyHeap;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        MyHeap<Integer> heap = new MyHeap<>();
-        heap.offer(15);
-        heap.offer(4);
-        heap.offer(26);
-        heap.offer(7);
-        heap.offer(8);
-        heap.offer(55);
-        heap.offer(36);
-        heap.offer(42);
-        System.out.println(heap);
+        String[] arr = {"1,1", "2,2"};
+        Stream<String> stream = Arrays.stream(arr);
+        // stream.forEach(System.out::println);流只能用一次
+        Stream<String> stringStream = stream.flatMap(s -> Stream.of(s.split(",")));
 
-        heap.offer(10);
-        System.out.println(heap);
+        stringStream.forEach(System.out::println);
+
     }
 
 
