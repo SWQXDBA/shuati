@@ -4,7 +4,7 @@ import MyTools.我的数据结构.Tree.BinaryTree.BinarySerchTree.MyBinarySearch
 import MyTools.我的数据结构.Tree.BinaryTree.BinarySerchTree.TreeNodeBase;
 import MyTools.我的数据结构.Tree.BinaryTree.TreePrinter;
 
-public class 实验三二叉树 {
+public class 实验四二叉树 {
     public static void main(String[] args) {
         MyBinarySearchTree<String> tree = new MyBinarySearchTree<>();
         tree.root = new TreeNodeBase<>("A");

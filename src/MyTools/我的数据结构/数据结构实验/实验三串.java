@@ -2,7 +2,7 @@ package MyTools.我的数据结构.数据结构实验;
 
 import MyTools.我的数据结构.MyString;
 
-public class 实验二串 {
+public class 实验三串 {
     public static void main(String[] args) {
         MyString str = new MyString("输入结点值的顺序必须对应二叉树结点前序遍历的顺序。并约定以输入序列中不可能出现的值作为空结点的值以结束递归".toCharArray());
         System.out.println("输出S1串" + str);
