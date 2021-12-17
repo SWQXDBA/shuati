@@ -31,6 +31,7 @@ public class RFTool {
                 }
             }, "线程" + i);
             thread.start();
+
         }
     }
 

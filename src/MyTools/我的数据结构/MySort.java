@@ -16,9 +16,11 @@ public class MySort {
     private static <T> void insertSortHelper(T[] array, Comparator<T> c, int gap) {
         for (int i = 1; i < array.length; i++) {//i:有序和无序部分的界限 这里不是i+=gap的原因是需要遍历整个数组
             T val = array[i];
+            //index:这一组中倒数第二个数的位置 因为要把index挪到index+1
             int index = i - gap;
+            //index比i 小 实际上index的都属"有序"的部分 此时要在有序部分中找到要插入的位置 并且把要插入位置后面的元素往后挪
             for (; index >= 0 && c.compare(array[index], val) > 0; index -= gap) {//搬移元素
-                //不写==是为了稳定性
+                //不写==是为了插入排序的稳定性 但是希尔排序是不稳定的
                 array[index + gap] = array[index];//搬运 把比要插入的元素val"大"的往后搬运
             }
             array[index + gap] = val;//插入
