@@ -90,9 +90,13 @@ public class MySort {
     }
 
     //堆排序会把最"小"的元素插入最后的有序部分，所以最终结果和堆的poll顺序相反。大的会先出来
+    //取出堆顶的最大/最小元素 与堆最后一个元素交换 此时最后一个位置被"排除出堆，进入有序部分"，然后调整堆
+    //！！！就是从堆中不断取出堆顶元素放入有序部分！！！
     public static <T> void heapSort(T[] array, Comparator<T> c) {
         createHeap(array, c);
+
         int index = array.length - 1;//已经有序的数据范围(index,array.length]
+
         while (index >= 0) {
             swap(array, 0, index);
             index--;
@@ -140,6 +144,7 @@ public class MySort {
         Arrays.parallelSort(array, c);
     }
 
+    //划分
     public static <T> void partition(T[] array, int left, int right, Comparator<T> c) {
         if (left >= right)//终止条件：排序区间为0
             return;
