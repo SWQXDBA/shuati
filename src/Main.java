@@ -1,18 +1,22 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+
 public class Main {
 
 
     public static void main(String[] args) {
-        ThreadLocal<String> local = new ThreadLocal<>();
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(3000);
 
-        for (int i = 0; i < 10; i++) {
-            int t = i;
-            Thread thread = new Thread(() -> {
-                local.set("你好" + t);
-                System.out.println(local.get());
-            });
-            thread.start();
-        }
 
+        Predicate<Integer> p = Predicate.not((integer -> !Objects.equals(integer, 3000)));
+        list.removeIf(p);
+        System.out.println(list);
 
     }
 
