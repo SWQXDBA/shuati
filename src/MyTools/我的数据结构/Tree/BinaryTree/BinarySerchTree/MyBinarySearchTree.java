@@ -195,6 +195,4 @@ public class MyBinarySearchTree<T extends Comparable<T>> implements BinaryTreeIn
         return root == null ? 0 : Math.max(deep(root.left), deep(root.right)) + 1;
     }
 
-
-
 }
