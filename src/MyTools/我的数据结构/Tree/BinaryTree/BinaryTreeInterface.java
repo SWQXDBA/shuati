@@ -61,10 +61,7 @@ public interface BinaryTreeInterface<T extends Comparable<T>> {
         if (left != null) {
             return left;
         }
-        if (right != null) {
-            return right;
-        }
-        return null;
+        return right;
 
     }
 
