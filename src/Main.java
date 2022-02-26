@@ -1,23 +1,36 @@
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
+/**
+ * @author SWQXDBA
+ */
 public class Main {
-    public static void main(String[] args) {
-        Main main = new Main();
-        System.out.println(main);
-        main.test();
+    public static class Fa {
+        public Fa() {
+            say();
+            this.say();
+        }
 
-        try {
-            CompletableFuture.runAsync(null).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        public void say() {
+            System.out.println("im father");
         }
     }
 
-    public void test() {
-        System.out.println(Main.this);
+    public static class Son extends Fa {
+        public Son() {
+            super();
+            say();
+            this.say();
+        }
+
+        @Override
+        public void say() {
+            super.say();
+            System.out.println("im son");
+        }
     }
+
+    public static void main(String[] args) {
+
+    }
+
+
 }
 
