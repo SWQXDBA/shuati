@@ -26,8 +26,12 @@ fun lengthOfLongestSubstring(s: String): Int {
             //在范围内出现了相同字符 则需要重新设置区间为两个字符之间 新的区间在旧的区间(没有重复字符)之内 所以也可以保证其他字符不会重复
 
             // bacda... 此时原区间为bacd 新的区间为cda 其中cd在原区间内 保证了不重复
-            if (lastLength <= dp[index - 1])
+            if (lastLength <= dp[index - 1]) {
                 dp[index] = lastLength
+            } else {
+                dp[index] = dp[index - 1] + 1
+            }
+
         } else {
             dp[index] = dp[index - 1] + 1
         }

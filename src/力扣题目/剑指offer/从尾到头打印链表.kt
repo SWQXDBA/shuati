@@ -15,7 +15,7 @@ class 从尾到头打印链表 {
 
 
 class ListNode(var `val`: Int) {
-    var next: ListNode? = null
+   public var next: ListNode? = null
 }
 
 fun main() {
