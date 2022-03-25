@@ -1,5 +1,3 @@
-import java.util.function.Function;
-
 /**
  * @author SWQXDBA
  */
@@ -8,12 +6,12 @@ public class Main {
         iMessage.send(str);
     }
 
-    public static void main(String args[]) {
-        // 引用startsWith()方法，该方法将接收一个String型参数，并返回Boolean类型
-        Function<String, Boolean> fun = (str) -> {
-            return "**MLDN".startsWith(str);
-        };
+    public static void main(String[] args) {
 
+        Object[] objects = new Object[5];
+        for (int i = 0; i < objects.length; i++) {
+            objects[i] = new Object();
+        }
     }
 
     public int numberOfChar(String str, char c) {
