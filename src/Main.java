@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * @author SWQXDBA
  */
@@ -8,10 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Object[] objects = new Object[5];
-        for (int i = 0; i < objects.length; i++) {
-            objects[i] = new Object();
+        int[] arr = {1, 3, 5};
+        for (int i : arr) {
+            i = i + 2;
         }
+        System.out.println(Arrays.toString(arr));
     }
 
     public int numberOfChar(String str, char c) {
