@@ -1,4 +1,7 @@
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author SWQXDBA
@@ -6,31 +9,36 @@ import java.util.concurrent.*;
 public class Main {
 
     public static void main(String[] args) {
+        final ExecutorService service = Executors.newFixedThreadPool(2);
+        long start = System.currentTimeMillis();
 
-        ThreadFactory threadFactory = new ThreadFactory() {
-            int num = 0;
-
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(r, "" + (num++));
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        };
-        ThreadPoolExecutor executorService = new ThreadPoolExecutor(10, 15, 100, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(1), threadFactory);
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-
+            return "1";
+        }, service);
+        final CompletableFuture<String> objectCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000L);
+                System.out.println(System.currentTimeMillis() - start);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            return "ok";
         });
-        final Runnable submit = (Runnable) executorService.submit(new Callable<Object>() {
-            @Override
-            public Object call() throws Exception {
-                return null;
-            }
+        final CompletableFuture<String> stringCompletableFuture = future.thenCombine(objectCompletableFuture, (f1, f2) -> {
+            return f1 + f2;
         });
-        //  System.out.println("111");
-        System.out.println(submit);
+
+        try {
+            System.out.println(stringCompletableFuture.get());
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
