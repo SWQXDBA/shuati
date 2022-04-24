@@ -15,6 +15,8 @@ public class Main {
         BigInteger bigInteger = new BigInteger(s.toString());
         System.out.println(bigInteger.subtract(BigInteger.ONE));
 
+        final String string = bigInteger.toString();
+        System.out.println(string.substring(0, string.length() / 2));
     }
 
 
