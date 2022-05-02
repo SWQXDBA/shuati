@@ -22,9 +22,7 @@ public class MQ {
                 return new Thread(r, "消费者" + (id++));
             }
         });
-
         AtomicInteger id = new AtomicInteger();
-
         for (int j = 0; j < 2; j++) {
             producer.execute(() -> {
                 for (int i = 0; i < 15; i++) {
@@ -38,7 +36,6 @@ public class MQ {
                 }
             });
         }
-
         for (int j = 0; j < 2; j++) {
             consumer.execute(() -> {
                 while (true) {
