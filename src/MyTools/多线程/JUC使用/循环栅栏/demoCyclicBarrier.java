@@ -17,6 +17,7 @@ public class demoCyclicBarrier {
         });//初始计数为10
         ExecutorService service = Executors.newFixedThreadPool(6);
 
+
         service.execute(() -> {
             Sleeper.sleep(1000);
             try {
