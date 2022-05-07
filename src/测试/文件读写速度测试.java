@@ -20,7 +20,7 @@ public class 文件读写速度测试 {
     }
 
     static void splitWrite() {
-        int cnt = 20000;
+        int cnt = 10000;
         final ExecutorService service = Executors.newFixedThreadPool(6);
 
         AtomicInteger finish = new AtomicInteger(cnt);
@@ -30,6 +30,7 @@ public class 文件读写速度测试 {
 
             bufferPool.offer(buffer);
         }
+
         BlockingQueue<Path> queue = new LinkedBlockingQueue<>();
         StopWatch stopWatch = new StopWatch();
         for (int i = 0; i < 3; i++) {
