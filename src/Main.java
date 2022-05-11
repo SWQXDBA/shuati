@@ -1,10 +1,12 @@
 import MyTools.工具类.Sleeper;
 import MyTools.工具类.StopWatch;
+import MyTools.我的数据结构.MyConcurrentCollection;
 import MyTools.我的数据结构.多线程集合性能测试.ParallelCollectionTest;
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -13,36 +15,84 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author SWQXDBA
  */
 public class Main {
+    public static void test2() {
 
-    static Person1 person1 = new Person1();
+        MyConcurrentCollection<String> linkedBlockingQueue = new MyConcurrentCollection<>(3);
+        StopWatch stopWatch = new StopWatch();
+        final ExecutorService service = Executors.newFixedThreadPool(200);
+        for (int i = 0; i < 100; i++) {
+            service.execute(() -> {
+                for (int j = 0; j < 100000; j++) {
+                    linkedBlockingQueue.takeOne();
+                }
 
-    static class Person1 {
-        @Override
-        public String toString() {
-            return "Person1{" +
-                    "value=" + value +
-                    ", value2=" + value2 +
-                    '}';
+            });
         }
 
-        public Person1() {
-            value = 1024;
-            Sleeper.sleep(1000);
-            value2 = 2048;
+        for (int i = 0; i < 100; i++) {
+            int finalI = i;
+            service.execute(() -> {
+                for (int j = 0; j < 100000; j++) {
+                    linkedBlockingQueue.add("." + finalI);
+                }
+
+            });
+        }
+        service.shutdown();
+        try {
+            service.awaitTermination(100, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(linkedBlockingQueue.getClass()+" "+stopWatch.getPassedMills());
+
+    }
+
+    public static void test1() {
+
+        LinkedBlockingQueue<String> linkedBlockingQueue = new LinkedBlockingQueue<>();
+        StopWatch stopWatch = new StopWatch();
+        final ExecutorService service = Executors.newFixedThreadPool(200);
+        for (int i = 0; i < 100; i++) {
+            service.execute(() -> {
+                try {
+                    for (int j = 0; j < 100000; j++) {
+                        linkedBlockingQueue.take();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
         }
 
-        int value = 0;
-        int value2 = 0;
+        for (int i = 0; i < 100; i++) {
+            int finalI = i;
+            service.execute(() -> {
+                for (int j = 0; j < 100000; j++) {
+                    linkedBlockingQueue.add("." + finalI);
+                }
+
+            });
+        }
+        service.shutdown();
+        try {
+            service.awaitTermination(100, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(linkedBlockingQueue.getClass()+" "+stopWatch.getPassedMills());
+
     }
 
     public static void main(String[] args) {
+        test1();
 
 
 
-        ParallelCollectionTest.testAll(10000,100);
+        test1();
+        test2();
 
-
-        Sleeper.sleep(10000L);
     }
 
 
