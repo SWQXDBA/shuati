@@ -3,7 +3,7 @@ package MyTools.工具类;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class SchedulePool使用 {
+public class  SchedulePool使用 {
     static ScheduledThreadPoolExecutor pool = new ScheduledThreadPoolExecutor(2);
 
     public static void main(String[] args) {
