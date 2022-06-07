@@ -1,5 +1,6 @@
 package MyTools.工具类;
 
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Random;
 
