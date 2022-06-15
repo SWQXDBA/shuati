@@ -13,9 +13,9 @@ public class 虚引用Demo {
             task.run();
             task = null;
             final Thread thread = Thread.currentThread();
-            System.out.println("在此处打断点查看threadLocalMap 此时应该还存着 userThreadLocal");
+            System.out.println("在此处打断点查看threadLocalMap 此时虽然task = null 但是应该还存着 userThreadLocal 因为线程维持了对它的弱引用");
             System.gc();
-            System.out.println("在此处打断点查看threadLocalMap 此时 \"username\" 应该已经被回收,但是User 本身还存在");
+            System.out.println("在此处打断点查看threadLocalMap 此时 所以 userThreadLocal 应该已经被回收,但是User 本身还存在");
             System.out.println(thread);
         }
 
@@ -25,13 +25,7 @@ public class 虚引用Demo {
             task.run2();
             task = null;
             final Thread thread = Thread.currentThread();
-            System.out.println("在此处打断点查看threadLocalMap 此时应该还存着 userThreadLocal");
-            System.gc();
-            ThreadLocal local = new ThreadLocal();
-            //调用cleanSomeSlots
-            local.remove();
-
-            System.out.println("在此处打断点查看threadLocalMap 此时 \"username\" 应该已经被回收,并且User 应该也被回收了");
+            System.out.println("在此处打断点查看threadLocalMap 此时应该已经被回收,并且User 应该也被回收了");
             System.out.println(thread);
         }
 
