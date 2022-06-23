@@ -3,6 +3,10 @@ package stargame;
 import stargame.ships.BattleShip;
 import stargame.ships.LightFighter;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class Game {
     public static void main(String[] args) {
         FighterGroup fleet1 = new FighterGroup() ;
@@ -15,5 +19,6 @@ public class Game {
         FighterGroup.DoFight(fleet1,fleet2);
         System.out.println(fleet1);
         System.out.println(fleet2);
+
     }
 }

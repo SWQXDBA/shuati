@@ -1,46 +1,30 @@
-class A {
+import MyTools.工具类.Sleeper;
+import MyTools.工具类.StopWatch;
+import MyTools.工具类.TimeTest;
+import MyTools.我的数据结构.MyConcurrentCollection;
+import MyTools.我的数据结构.多线程集合性能测试.ParallelCollectionTest;
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType;
 
-}
+import java.io.File;
+import java.io.IOException;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
+import java.sql.Time;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.ReentrantLock;
 
-class B extends A {
-
-}
-
-class C extends A {
-
-}
-
-class D extends B {
+import static MyTools.工具类.FileTool.enumAllSubFiles;
 
 
-}
+/**
+ * @author SWQXDBA
+ */
 
 public class Main {
-
-    public static void fun(A a) {
-        System.out.println("A");
-    }
-
-    public static void fun(B a) {
-        System.out.println("B");
-    }
-
-    public static void fun(C a) {
-        System.out.println("C");
-    }
-
-
-    public static void main(String[] args) {
-        A a1 = new A();
-        A a2 = new B();
-        A a3 = new C();
-        A a4 = new D();
-        fun(a1);
-        fun(a2);
-        fun(a3);
-        fun(a4);
-        fun(new D());
-    }
 
 }
 
