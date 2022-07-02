@@ -26,5 +26,9 @@ import static MyTools.工具类.FileTool.enumAllSubFiles;
 
 public class Main {
 
+
+    public static void main(String[] args) {
+
+    }
 }
 
