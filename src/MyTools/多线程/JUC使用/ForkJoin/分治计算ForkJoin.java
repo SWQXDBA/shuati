@@ -25,7 +25,7 @@ public class 分治计算ForkJoin {
         {
             long startTime, endTime;
             startTime = System.currentTimeMillis();
-            ForkJoinPool pool = new ForkJoinPool(6);
+            ForkJoinPool pool = new ForkJoinPool(10);
             Task task = new Task(array, 0, array.length);
             //execute不会阻塞等待结果 需要手动task.join
 
