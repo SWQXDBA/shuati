@@ -10,6 +10,7 @@ class Mover(
 ) {
     var currentRow: Int = 0
     var currentCol: Int = 0
+
     fun moveNext() {
         if (row == 1) {
             currentCol++
@@ -71,6 +72,8 @@ fun convert(s: String, numRows: Int): String {
 }
 
 fun main() {
+
+
     println(
         convert(
             "PAYPALISHIRING",
