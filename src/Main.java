@@ -1,3 +1,5 @@
+import MyTools.工具类.RandomTool;
+
 /**
  * @author SWQXDBA
  */
@@ -10,9 +12,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        final Thread test = test();
-        System.gc();
-        test.start();
+
+        String[]teachers  = new String[]{"林亚明","柯财富","余兆钗"};
+        long randomABS = RandomTool.getRandomABS(2);
+        System.out.println(teachers[(int) randomABS]);
+
     }
 
     static class Execut {
