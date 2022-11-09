@@ -14,7 +14,7 @@ public class UnsafeGetter {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        System.out.println("ok");
+
         return unsafe;
     }
 
