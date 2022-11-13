@@ -133,20 +133,16 @@ public class CAS与synchronize配合测试 {
         System.out.println("阻塞队列");
         final ExecutorService executorService = Executors.newSingleThreadExecutor();
         final MethodHandles.Lookup lookup = MethodHandles.lookup();
-        try {
-            for (int i = 0; i < threadsCount; i++) {
+        for (int i = 0; i < threadsCount; i++) {
 
-                for (int j = 0; j < executeCount; j++) {
+            for (int j = 0; j < executeCount; j++) {
 
-                    executorService.submit(() -> {
-                        CAS与synchronize配合测试.cnt++;
-                    });
+                executorService.submit(() -> {
+                    CAS与synchronize配合测试.cnt++;
+                });
 
 
-                }
             }
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
         }
 
 

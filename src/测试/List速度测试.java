@@ -1,16 +1,13 @@
+package 测试;
+
 import MyTools.工具类.StopWatch;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * @author SWQXDBA
- */
-
-public class Main {
+public class List速度测试 {
     static int v = 100000;
-    private static Object locker = new Object();
 
     public static void main(String[] args) {
         test1();
@@ -100,4 +97,3 @@ public class Main {
         System.out.println(stopWatch.getPassedMills());
     }
 }
-

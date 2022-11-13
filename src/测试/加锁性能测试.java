@@ -105,6 +105,7 @@ public class 加锁性能测试 {
 
     static void test6() {
 
+
         System.out.println("synchronized");
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
