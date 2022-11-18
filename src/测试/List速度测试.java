@@ -1,19 +1,15 @@
-import MyTools.工具类.RandomTool;
+package 测试;
 
-/**
- * @author SWQXDBA
- */
+import MyTools.工具类.StopWatch;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class List速度测试 {
     static int v = 100000;
-    private static Object locker = new Object();
 
     public static void main(String[] args) {
-
-        String[]teachers  = new String[]{"林亚明","柯财富","余兆钗"};
-        long randomABS = RandomTool.getRandomABS(2);
-        System.out.println(teachers[(int) randomABS]);
-
         test1();
         test2();
         test3();
@@ -101,4 +97,3 @@ public class Main {
         System.out.println(stopWatch.getPassedMills());
     }
 }
-
