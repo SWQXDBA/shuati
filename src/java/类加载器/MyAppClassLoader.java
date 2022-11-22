@@ -9,6 +9,14 @@ import java.util.regex.Matcher;
 
 public class MyAppClassLoader extends ClassLoader{
 
+    /**
+     * 根据类名 读取到字节数组 调用defineClass native方法加载class对象
+     * @param name
+     *         The <a href="#binary-name">binary name</a> of the class
+     *
+     * @return
+     * @throws ClassNotFoundException
+     */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
 //        String s = name.replaceAll("\\.", Matcher.quoteReplacement(File.separator));
@@ -22,9 +30,24 @@ public class MyAppClassLoader extends ClassLoader{
 
     }
 
+    /**
+     * 打破或者实现双亲委派模型
+     * @param name
+     *         The <a href="#binary-name">binary name</a> of the class
+     *
+     * @param resolve
+     *         If {@code true} then resolve the class
+     *
+     * @return
+     * @throws ClassNotFoundException
+     */
     @Override
     protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         synchronized (getClassLoadingLock(name)) {
+            /*
+              在加载指定类时 指定类所依赖的类默认也会用此加载器加载，甚至包括Object等类。
+              对于这些调用父类(系统加载器)加载
+             */
             if(!name.startsWith("类加载器")){
               return   getParent().loadClass(name);
             }
@@ -33,7 +56,11 @@ public class MyAppClassLoader extends ClassLoader{
                 return loadedClass;
             }
             System.out.println("load new class: "+name );
-            return findClass(name);
+            Class<?> aClass = findClass(name);
+            if(resolve){
+                resolveClass(aClass);
+            }
+            return aClass;
         }
 
     }
